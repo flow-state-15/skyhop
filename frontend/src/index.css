@@ -1,0 +1,38 @@
+/* TODO Add site wide styles */
+
+@font-face {
+    font-family: 'AirbnbCerealMedium';
+    src: local('AirbnbCerealMedium'), url(./fonts/AirbnbCerealMedium.woff) format('woff');
+  }
+
+body {
+    text-align: center;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'AirbnbCerealMedium';
+    color: blue;
+    text-decoration: none;
+    margin: 3px;
+}
+
+li {
+    list-style: none;
+}
+
+.page_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_content {
+    max-width: 1200px;
+}

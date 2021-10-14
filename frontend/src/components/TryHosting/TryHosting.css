@@ -1,0 +1,42 @@
+
+#try_hosting_container {
+    margin-top: 30px;
+    height: fit-content;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    border-radius: 20px;
+}
+
+#try_hosting_text_container {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+
+
+#try_hosting_img {
+    border-radius: 0px 20px 20px 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#try_hosting_img_container {
+    border-radius: 0px 20px 20px 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 500px;
+    height: 400px;
+}
+
+.try_hosting_text {
+    margin: 10px;
+    color: white;
+}

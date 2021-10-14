@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  position: absolute;
+  background-color: white;
+  border-radius: 20px;
+}
+
+#auth_modal_container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  padding: 3px;
+  align-items: center;
+  width: 100%;
+}
+
+#modal_top_banner {
+  padding: 6px;
+}
+
+#auth_modal_form_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  height: fit-content;
+}
+
+#demo_container {
+  text-align: center;
+  width: 95%;
+  height: fit-content;
+}
+
+.modal_inputs_buttons {
+  width: 100%;
+  margin: 0px;
+  border-radius: 8px;
+  height: 35px;
+}
+
+#modal_divider {
+  display: flex;
+  align-items: center;
+  width: 95%;
+}
+
+#modal_divider span {
+  padding: 0 2rem;
+}
+
+#modal_divider #line {
+  height: 1px;
+  flex: 1;
+  background-color: #000;
+}
+
+button {
+  cursor: pointer;
+  background-color:  rgb(215, 4, 102);
+  color: white;
+}

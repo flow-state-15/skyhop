@@ -1,0 +1,34 @@
+img {
+  width: auto;
+  height: 200px;
+  vertical-align: middle;
+  border-radius: 15px;
+}
+
+#category_tiles_container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 95%;
+  height: fit-content;
+}
+
+.category_tile {
+  height: 100%;
+  object-fit: contain;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+}
+
+#get_in_the_air {
+  padding-left: 8px;
+  margin-top: 30px;
+}
+
+.category_tile_link {
+  width: fit-content;
+  height: fit-content;
+}
