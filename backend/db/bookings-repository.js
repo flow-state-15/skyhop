@@ -1,24 +1,33 @@
-// const { Op } = require("sequelize");
-const { Listing } = require("./models");
+const { Op } = require("sequelize");
+const { Booking } = require("./models");
 
-async function getCategoryListings(category_id) {
-  return await Listing.findAll({
+async function getAllBookings(renter_id) {
+  console.log("!!! in getAllBookings !!!")
+  const bookings = await Booking.findAll({
     where: {
-      category_id: category_id,
+      renter_id: renter_id,
     },
   });
+
+  console.log("*** in getAllBookings repo, bookings: ", bookings)
+
+  return bookings
 }
 
-async function createListing(form_data) {
-  const listing = await Listing.create({ ...form_data });
-  console.log("******************in create listing listing: ", listing);
-  return listing;
+async function getBooking(booking_id) {
+  return await Booking.findByPk(booking_id);
 }
 
-async function updateListing(form_data) {
-  const id = form_data.id;
-  delete form_data.id;
-  const response = await Listing.update(form_data, {
+async function createBooking(form_data) {
+  const newBooking = await Booking.create({ ...form_data });
+  console.log("******************in booking repo, newBooking: ", newBooking);
+  return newBooking;
+}
+
+async function updateBooking(form_data) {
+  const id = form_data.booking_id;
+  delete form_data.booking_id;
+  const response = await Booking.update(form_data, {
     where: { id },
     returning: true,
     plain: true,
@@ -26,8 +35,19 @@ async function updateListing(form_data) {
   return response;
 }
 
+async function deleteBooking(booking_id) {
+  console.log("***************", booking_id ,"*******************")
+  const response = await Booking.destroy({
+    where: { id: booking_id }
+  });
+  if (!response) return false
+  return true
+}
+
 module.exports = {
-  getCategoryListings,
-  createListing,
-  updateListing,
+  getAllBookings,
+  getBooking,
+  createBooking,
+  updateBooking,
+  deleteBooking,
 };
