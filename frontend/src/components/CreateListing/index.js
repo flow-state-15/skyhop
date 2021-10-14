@@ -15,7 +15,7 @@ const CreateListing = () => {
   const [location, setLocation] = useState("");
   const [img_url, setImg_url] = useState("");
   const [validationErrors, setValidationErrors] = useState([])
-  
+
   useEffect(() => {
     const errors = []
 
@@ -42,7 +42,7 @@ const CreateListing = () => {
 
     if(!validationErrors.length !== 0){
       dispatch(createListingCreator(newListing));
-      history.push(`/listings/${category_id}`);
+      history.push(`/profile/${user.id}`);
     }
   };
 
