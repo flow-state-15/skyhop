@@ -129,7 +129,7 @@ const bookingsReducer = ( state = {} , action) => {
   switch (action.type) {
     case All_BOOKINGS:
       newState = Object.assign({}, state);
-      newState.all_bookings = action.all_bookings;
+      newState.all_bookings = { ...action.all_bookings };
       return newState;
     case GET_BOOKING:
       newState = Object.assign({}, state);

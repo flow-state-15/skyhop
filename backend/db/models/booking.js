@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Booking.belongsTo(models.Listing, { foreignKey: "listing_id" });
     Booking.belongsTo(models.User, { foreignKey: "renter_id" });
-    Booking.belongsTo(models.Review, {
+    Booking.hasOne(models.Review, {
       foreignKey: "booking_id",
       onDelete: "cascade",
       hooks: true,

@@ -15,7 +15,7 @@ router.get(
   "/:user_id/",
   asyncHandler(async (req, res, next) => {
     const renter_id = req.params.user_id;
-
+    console.log("********** testing /api/bookings/:user_id")
 
     const all_bookings = await BookingsRepository.getAllBookings(renter_id);
     console.log("**** in /:user_id/, param: ", renter_id, typeof renter_id, "*** all_bookings: ", all_bookings, typeof all_bookings);
