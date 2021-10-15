@@ -36,10 +36,15 @@ async function updateBooking(form_data) {
 }
 
 async function deleteBooking(booking_id) {
-  console.log("***************", booking_id ,"*******************")
-  const response = await Booking.destroy({
-    where: { id: booking_id }
-  });
+  // console.log("***************", booking_id ,"*******************")
+  const booking = await Booking.findByPk(booking_id)
+
+  const response = await booking.destroy()
+
+  // const response = await Booking.destroy({
+  //   where: { id: booking_id }
+  // });
+
   if (!response) return false
   return true
 }

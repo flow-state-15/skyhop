@@ -95,7 +95,7 @@ router.delete(
       return res.json({
         status: response
       })
-    } else { console.log(" !!! FETCH FAILED WITH DELETE !!! ") }
+    } else { console.log(" !!! DELETE FAILED !!! ") }
   })
 );
 
