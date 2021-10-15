@@ -62,87 +62,105 @@ const deleteListing = (listing_id) => {
 
 //action creators
 export const getCategoryListingsCreator = (category_id) => async (dispatch) => {
+  try {
     console.log("in getCategoryListingsCreator")
   const response = await fetch(`/api/listings/categories/${category_id}`);
   const category_listings = await response.json();
   // console.log("in getCategoryListingsCreator. fetch return after .json(): ", category_listings)
   dispatch(getCategoryListings(category_listings))
   return category_listings;
+
+  } catch(e) {}
 };
 
 export const getUserListingsCreator = (user_id) => async (dispatch) => {
+  try {
     // console.log("in getUserListingsCreator", user_id)
   const response = await csrfFetch(`/api/listings/${user_id}/all`);
   const { listings } = await response.json();
   // console.log("in getUserListingsCreator. fetch return after .json(): ", listings)
   dispatch(getUserListings(listings))
   return listings;
+
+  } catch(e) {}
 };
 
 export const getOneListingCreator = (listing_id) => async dispatch => {
-  const response = await fetch(`/api/listings/${listing_id}`);
-  const data = await response.json();
-  dispatch(getOneListing(data));
-  return response;
+  try {
+    const response = await fetch(`/api/listings/${listing_id}`);
+    const data = await response.json();
+    dispatch(getOneListing(data));
+    return response;
+
+  } catch(e) {}
 };
 
 export const createListingCreator = (form_data) => async (dispatch) => {
-  const { title, description, owner_id, category_id, location, img_url } = form_data;
-  const response = await csrfFetch(`/api/listings/`, {
-    method: "POST",
-    body: JSON.stringify({
-      title,
-      description,
-      owner_id,
-      category_id,
-      location,
-      img_url
-    }),
-  });
-  const data = await response.json();
-  //returns all listings in created listing's category
-  if(response.ok) {
-    // console.log("within createListingCreator, data.category_id: ", data)
-    dispatch(getCategoryListingsCreator(data.data.category_id))
-  } else {
-    console.log("!!! createListingCreator fetch failed !!!", data)
-  }
-  return data;
+  try {
+    const { title, description, owner_id, category_id, location, img_url } = form_data;
+    const response = await csrfFetch(`/api/listings/`, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        description,
+        owner_id,
+        category_id,
+        location,
+        img_url
+      }),
+    });
+    const data = await response.json();
+    //returns all listings in created listing's category
+    if(response.ok) {
+      // console.log("within createListingCreator, data.category_id: ", data)
+      dispatch(getCategoryListingsCreator(data.data.category_id))
+    } else {
+      console.log("!!! createListingCreator fetch failed !!!", data)
+    }
+    return data;
+
+  } catch(e) {}
 };
 
 export const updateListingCreator = (form_data) => async (dispatch) => {
-  // console.log("within update listing creator, form_data:", form_data)
-  const { listing_id, title, description, owner_id, category_id, location, img_url } = form_data;
-  const response = await csrfFetch(`/api/listings/${owner_id}/${listing_id}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      listing_id,
-      title,
-      description,
-      owner_id,
-      category_id,
-      location,
-      img_url
-    }),
-  });
-  const { data } = await response.json();
-  if(response.ok) {
-    // console.log("within updateListingCreator, data.category_id: ", data)
-    dispatch(updateListing(data))
-  } else {
-    // console.log("!!! updateListingCreator fetch failed !!!", data)
-  }
-  return data;
+  try {
+    // console.log("within update listing creator, form_data:", form_data)
+    const { listing_id, title, description, owner_id, category_id, location, img_url } = form_data;
+    const response = await csrfFetch(`/api/listings/${owner_id}/${listing_id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        listing_id,
+        title,
+        description,
+        owner_id,
+        category_id,
+        location,
+        img_url
+      }),
+    });
+    const { data } = await response.json();
+    if(response.ok) {
+      // console.log("within updateListingCreator, data.category_id: ", data)
+      dispatch(updateListing(data))
+    } else {
+      // console.log("!!! updateListingCreator fetch failed !!!", data)
+    }
+    return data;
+
+  } catch(e) {}
 };
 
 export const deleteListingCreator = (user_id, listing_id) => async dispatch => {
-  const response = await csrfFetch(`/api/listings/${user_id}/${listing_id}`, {
-    method: "DELETE",
-  });
-  const status = await response.json();
+  try {
+    const response = await csrfFetch(`/api/listings/${user_id}/${listing_id}`, {
+      method: "DELETE",
+    });
+    const status = await response.json();
 
-  dispatch(deleteListing(listing_id));
-  return response;
+    dispatch(deleteListing(listing_id));
+    return response;
+
+  } catch(e) {}
 };
 
 //reducer function

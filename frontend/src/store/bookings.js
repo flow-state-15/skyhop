@@ -63,80 +63,97 @@ const deleteBooking = (booking_id) => {
 
 //action creators
 export const getAllBookingsCreator = (user_id) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/bookings/${user_id}/`);
+    let { all_bookings } = await response.json();
+    // console.log("in getAllBookingsCreator, before conversion: ", all_bookings)
+    all_bookings = toObject(all_bookings);
+    dispatch(getAllBookings(all_bookings));
+    return all_bookings;
+   } catch(e) {  }
   // console.log("in getAllBookingsCreator")
-  const response = await csrfFetch(`/api/bookings/${user_id}/`);
-  let { all_bookings } = await response.json();
-  // console.log("in getAllBookingsCreator, before conversion: ", all_bookings)
-  all_bookings = toObject(all_bookings);
-  dispatch(getAllBookings(all_bookings));
-  return all_bookings;
 };
 
 export const getOneBookingCreator =
   (user_id, booking_id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`);
-    const { booking } = await response.json();
-    dispatch(getOneBooking(booking));
-    return response;
+    try {
+      const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`);
+      const { booking } = await response.json();
+      dispatch(getOneBooking(booking));
+      return response;
+
+    } catch(e) {
+
+    }
   };
 
 export const createBookingCreator = (form_data) => async (dispatch) => {
-  const { listing_id, renter_id, book_start, book_end } = form_data;
-  const response = await csrfFetch(`/api/bookings/${renter_id}/`, {
-    method: "POST",
-    body: JSON.stringify({
-      listing_id,
-      renter_id,
-      book_start,
-      book_end,
-    }),
-  });
-  const data = await response.json();
-  if (response.ok) {
-    dispatch(createBooking(data));
-  } else {
-    console.log("!!! createBookingCreator fetch failed !!!", data);
-  }
-  return data;
+  try {
+    const { listing_id, renter_id, book_start, book_end } = form_data;
+    const response = await csrfFetch(`/api/bookings/${renter_id}/`, {
+      method: "POST",
+      body: JSON.stringify({
+        listing_id,
+        renter_id,
+        book_start,
+        book_end,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      dispatch(createBooking(data));
+    } else {
+      console.log("!!! createBookingCreator fetch failed !!!", data);
+    }
+    return data;
+
+  } catch(e) {}
 };
 
 export const updateBookingCreator = (form_data) => async (dispatch) => {
-  // console.log("within update booking creator, form_data:", form_data)
-  const { booking_id, listing_id, renter_id, book_start, book_end } = form_data;
-  const response = await csrfFetch(`/api/bookings/${renter_id}/${booking_id}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      booking_id,
-      listing_id,
-      renter_id,
-      book_start,
-      book_end,
-    }),
-  });
-  const { data } = await response.json();
-  if (response.ok) {
-    console.log("within updateBookingCreator, data: ", data)
-    dispatch(updateBooking(data));
-  } else {
-    // console.log("!!! updateListingCreator fetch failed !!!", data)
-  }
-  return data;
+  try {
+    // console.log("within update booking creator, form_data:", form_data)
+    const { booking_id, listing_id, renter_id, book_start, book_end } = form_data;
+    const response = await csrfFetch(`/api/bookings/${renter_id}/${booking_id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        booking_id,
+        listing_id,
+        renter_id,
+        book_start,
+        book_end,
+      }),
+    });
+    const { data } = await response.json();
+    if (response.ok) {
+      console.log("within updateBookingCreator, data: ", data)
+      dispatch(updateBooking(data));
+    } else {
+      // console.log("!!! updateListingCreator fetch failed !!!", data)
+    }
+    return data;
+
+  } catch(e) {}
 };
 
 export const deleteBookingCreator =
   (user_id, booking_id) => async (dispatch) => {
-    // user_id = user_id.toString()
-    console.log("IN DELETE BOOKING CREATOR, user_id, booking_id", user_id, typeof user_id, booking_id, typeof booking_id)
-    const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: null,
-    });
+    try {
+      // user_id = user_id.toString()
+      console.log("IN DELETE BOOKING CREATOR, user_id, booking_id", user_id, typeof user_id, booking_id, typeof booking_id)
+      const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: null,
+      });
 
-    dispatch(deleteBooking(booking_id));
-    return response;
+      dispatch(deleteBooking(booking_id));
+      return response;
+
+
+    } catch(e) {}
   };
 
 //reducer function
