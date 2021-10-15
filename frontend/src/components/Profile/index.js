@@ -1,5 +1,5 @@
 import "./Profile.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUserListingsCreator,
@@ -17,20 +17,22 @@ const Profile = () => {
   const user_id = useSelector((state) => state.session?.user?.id);
   let user_listings = useSelector((state) => state.listings?.user_listings);
   let all_bookings = useSelector((state) => state.bookings?.all_bookings);
+  let [count, setCount] = useState(0)
 
   if (user_listings) {
     user_listings = Object.values(user_listings);
   }
   if (all_bookings) {
     all_bookings = Object.values(all_bookings);
-    console.log("ALL BOOKINGS AFTER IF IN COMPONENT: ", all_bookings)
+    // console.log("ALL BOOKINGS AFTER IF IN COMPONENT: ", all_bookings)
   }
   // console.log("after: ", user_listings)
 
   useEffect(() => {
     dispatch(getUserListingsCreator(user_id));
     dispatch(getAllBookingsCreator(user_id));
-  }, [user_id]);
+    return setCount(1)
+  }, [count]);
 
   // console.log("**checking state**", user_id);
   // console.log("**checking user_listings**", user_listings);
@@ -39,12 +41,14 @@ const Profile = () => {
     // console.log("**** handleClick event target: ", e.target.value);
     dispatch(deleteListingCreator(user_id, e.target.value));
     dispatch(getUserListingsCreator(user_id));
+    setCount(prev => prev + 1)
   };
 
-  const handleClickBooking = (e) => {
+  const handleDeleteBooking = (e) => {
     // console.log("**** handleClick event target: ", e.target.value);
     dispatch(deleteBookingCreator(user_id, e.target.value));
     dispatch(getAllBookingsCreator(user_id));
+    setCount(prev => prev + 1)
   };
 
   if (+params.user_id !== user_id) {
@@ -95,17 +99,37 @@ const Profile = () => {
               <li key={index+booking.id}>
                 <div className="listing_container">
                   {/* <h3>You are booking: {booking}</h3> */}
-                  <h5>Booking ID: {booking.listing_id}</h5>
+                  <h5>Booking ID: {booking.id}</h5>
                   <Link to={`/listings/${booking.listing_id}`}>
                     No Image Yet
                     <img src={``} alt={`improper source atm`} />
                   </Link>
+
+                  {/* <div className="book_start">{new Date(booking.book_start).toLocaleDateString("en-US", {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </div>
+                  <div className="book_end">{new Date(booking.book_end).toLocaleDateString("en-US", {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </div> */}
+
                   <button
                     id="delete_booking_button"
-                    onClick={(e) => handleClickBooking(e)}
+                    onClick={ handleDeleteBooking }
                     value={booking.id}
                   >
-                    Delete this listing
+                    Delete this booking
                   </button>
                   <Link to={`/bookings/${booking.id}/update`}>
                     <button id="update_booking_button">

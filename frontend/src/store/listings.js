@@ -71,7 +71,7 @@ export const getCategoryListingsCreator = (category_id) => async (dispatch) => {
 };
 
 export const getUserListingsCreator = (user_id) => async (dispatch) => {
-    console.log("in getUserListingsCreator", user_id)
+    // console.log("in getUserListingsCreator", user_id)
   const response = await csrfFetch(`/api/listings/${user_id}/all`);
   const { listings } = await response.json();
   // console.log("in getUserListingsCreator. fetch return after .json(): ", listings)
@@ -111,7 +111,7 @@ export const createListingCreator = (form_data) => async (dispatch) => {
 };
 
 export const updateListingCreator = (form_data) => async (dispatch) => {
-  console.log("within update listing creator, form_data:", form_data)
+  // console.log("within update listing creator, form_data:", form_data)
   const { listing_id, title, description, owner_id, category_id, location, img_url } = form_data;
   const response = await csrfFetch(`/api/listings/${owner_id}/${listing_id}`, {
     method: "PUT",

@@ -9,10 +9,10 @@ const DELETE_BOOKING = "bookings/deleteBooking";
 function toObject(array) {
   // console.log("IN CONVERTER, ARRAY", array)
   const newObject = {};
-  for (let i = 0; i < array.length; ++i){
+  for (let i = 0; i < array.length; ++i) {
     if (array[i] !== undefined) {
-      newObject[array[i].id] = array[i]
-    };
+      newObject[array[i].id] = array[i];
+    }
   }
   // console.log("IN CONVERTER, newObject:", newObject)
   return newObject;
@@ -20,7 +20,6 @@ function toObject(array) {
 
 //actions
 const getAllBookings = (all_bookings) => {
-
   // console.log("!!! in getAllBookings ACTION: ", all_bookings)
   return {
     type: ALL_BOOKINGS,
@@ -36,43 +35,49 @@ const getOneBooking = (booking) => {
 };
 
 const createBooking = (booking) => {
-  return {
+  booking[booking.data.id] = { ...booking.data };
+  const target_object = {};
+  target_object[booking.data.id] = { ...booking.data };
+  const return_object = {
     type: CREATE_BOOKING,
-    booking
   };
+  return_object.payload = target_object;
+  return return_object;
 };
 
 const updateBooking = (booking) => {
   return {
     type: UPDATE_BOOKING,
-    booking
+    booking,
   };
 };
 
 const deleteBooking = (booking_id) => {
+  console.log("IN DELETE BOOKING ACTION, booking_id: ", booking_id);
   return {
     type: DELETE_BOOKING,
-    booking_id
+    booking_id,
   };
 };
 
 //action creators
 export const getAllBookingsCreator = (user_id) => async (dispatch) => {
-    // console.log("in getAllBookingsCreator")
+  // console.log("in getAllBookingsCreator")
   const response = await csrfFetch(`/api/bookings/${user_id}/`);
-  let {all_bookings} = await response.json();
+  let { all_bookings } = await response.json();
   // console.log("in getAllBookingsCreator, before conversion: ", all_bookings)
-  all_bookings = toObject(all_bookings)
-  dispatch(getAllBookings(all_bookings))
+  all_bookings = toObject(all_bookings);
+  dispatch(getAllBookings(all_bookings));
   return all_bookings;
 };
 
-export const getOneBookingCreator = (user_id, booking_id) => async dispatch => {
-  const response = await fetch(`/api/bookings/${user_id}/${booking_id}`);
-  const { booking } = await response.json();
-  dispatch(getOneBooking(booking));
-  return response;
-};
+export const getOneBookingCreator =
+  (user_id, booking_id) => async (dispatch) => {
+    const response = await fetch(`/api/bookings/${user_id}/${booking_id}`);
+    const { booking } = await response.json();
+    dispatch(getOneBooking(booking));
+    return response;
+  };
 
 export const createBookingCreator = (form_data) => async (dispatch) => {
   const { listing_id, renter_id, book_start, book_end } = form_data;
@@ -85,12 +90,11 @@ export const createBookingCreator = (form_data) => async (dispatch) => {
       book_end,
     }),
   });
-  const { data } = await response.json();
-  if(response.ok) {
-    // console.log("within createBookingCreator, data: ", data)
-    dispatch(createBooking(data))
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(createBooking(data));
   } else {
-    // console.log("!!! createBookingCreator fetch failed !!!", data)
+    console.log("!!! createBookingCreator fetch failed !!!", data);
   }
   return data;
 };
@@ -109,33 +113,39 @@ export const updateBookingCreator = (form_data) => async (dispatch) => {
     }),
   });
   const { data } = await response.json();
-  if(response.ok) {
+  if (response.ok) {
     // console.log("within updateBookingCreator, data: ", data)
-    dispatch(updateBooking(data))
+    dispatch(updateBooking(data));
   } else {
     // console.log("!!! updateListingCreator fetch failed !!!", data)
   }
   return data;
 };
 
-export const deleteBookingCreator = (user_id, booking_id) => async dispatch => {
-  const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`, {
-    method: "DELETE",
-  });
-  const status = await response.json();
+export const deleteBookingCreator =
+  (user_id, booking_id) => async (dispatch) => {
+    // user_id = user_id.toString()
+    console.log("IN DELETE BOOKING CREATOR, user_id, booking_id", user_id, typeof user_id, booking_id, typeof booking_id)
+    const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: null,
+    });
 
-  dispatch(deleteBooking(booking_id));
-  return response;
-};
+    dispatch(deleteBooking(booking_id));
+    return response;
+  };
 
 //reducer function
-const bookingsReducer = ( state = {} , action) => {
+const bookingsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case ALL_BOOKINGS:
       // console.log("!!! in bookingsReducer, action: ", action)
       newState = Object.assign({}, state);
-      newState.all_bookings = action.all_bookings ;
+      newState.all_bookings = action.all_bookings;
       // console.log("!!! in bookingsReducer, newState: ", newState)
       return newState;
     case GET_BOOKING:
@@ -148,7 +158,7 @@ const bookingsReducer = ( state = {} , action) => {
       return newState;
     case CREATE_BOOKING:
       newState = Object.assign({}, state);
-      newState.all_bookings[action.booking.id] = { ...action.booking };
+      newState.all_bookings = { ...newState.all_bookings, ...action.payload };
       return newState;
     case DELETE_BOOKING:
       newState = Object.assign({}, state);
