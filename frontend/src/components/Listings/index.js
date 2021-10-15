@@ -18,7 +18,7 @@ const Listings = () => {
         dispatch(getCategoryListingsCreator(category_id))
     }, [])
 
-    console.log("**checking state**", test)
+    // console.log("**checking state**", test)
 
      // console.log(category_listings.listings)
 
