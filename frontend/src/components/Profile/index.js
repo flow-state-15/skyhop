@@ -11,20 +11,19 @@ import {
 } from "../../store/bookings";
 import { Link, useParams } from "react-router-dom";
 
-const Listings = () => {
+const Profile = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const user_id = useSelector((state) => state.session?.user?.id);
   let user_listings = useSelector((state) => state.listings?.user_listings);
   let all_bookings = useSelector((state) => state.bookings?.all_bookings);
 
-  // console.log("before: ", user_listings)
-
   if (user_listings) {
     user_listings = Object.values(user_listings);
   }
   if (all_bookings) {
     all_bookings = Object.values(all_bookings);
+    console.log("ALL BOOKINGS AFTER IF IN COMPONENT: ", all_bookings)
   }
   // console.log("after: ", user_listings)
 
@@ -60,7 +59,7 @@ const Listings = () => {
     return (
       <div>
         <div id="user_listings_component_wrapper">
-          <h2>testing PROFILE component</h2>
+          <h2>Your Listings</h2>
 
           <ul>
             {user_listings?.map((listing, index) => (
@@ -90,11 +89,12 @@ const Listings = () => {
           </ul>
         </div>
         <div id="user_bookings_component_wrapper">
+        <h2>Your Bookings</h2>
           <ul>
             {all_bookings?.map((booking, index) => (
               <li key={index+booking.id}>
                 <div className="listing_container">
-                  <h3>You are booking: {booking}</h3>
+                  {/* <h3>You are booking: {booking}</h3> */}
                   <h5>Booking ID: {booking.listing_id}</h5>
                   <Link to={`/listings/${booking.listing_id}`}>
                     No Image Yet
@@ -121,4 +121,4 @@ const Listings = () => {
     );
 };
 
-export default Listings;
+export default Profile;

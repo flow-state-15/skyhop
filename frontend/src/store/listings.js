@@ -65,7 +65,7 @@ export const getCategoryListingsCreator = (category_id) => async (dispatch) => {
     console.log("in getCategoryListingsCreator")
   const response = await fetch(`/api/listings/categories/${category_id}`);
   const category_listings = await response.json();
-  console.log("in getCategoryListingsCreator. fetch return after .json(): ", category_listings)
+  // console.log("in getCategoryListingsCreator. fetch return after .json(): ", category_listings)
   dispatch(getCategoryListings(category_listings))
   return category_listings;
 };
@@ -74,7 +74,7 @@ export const getUserListingsCreator = (user_id) => async (dispatch) => {
     console.log("in getUserListingsCreator", user_id)
   const response = await csrfFetch(`/api/listings/${user_id}/all`);
   const { listings } = await response.json();
-  console.log("in getUserListingsCreator. fetch return after .json(): ", listings)
+  // console.log("in getUserListingsCreator. fetch return after .json(): ", listings)
   dispatch(getUserListings(listings))
   return listings;
 };
@@ -102,7 +102,7 @@ export const createListingCreator = (form_data) => async (dispatch) => {
   const data = await response.json();
   //returns all listings in created listing's category
   if(response.ok) {
-    console.log("within createListingCreator, data.category_id: ", data)
+    // console.log("within createListingCreator, data.category_id: ", data)
     dispatch(getCategoryListingsCreator(data.data.category_id))
   } else {
     console.log("!!! createListingCreator fetch failed !!!", data)
@@ -127,10 +127,10 @@ export const updateListingCreator = (form_data) => async (dispatch) => {
   });
   const { data } = await response.json();
   if(response.ok) {
-    console.log("within updateListingCreator, data.category_id: ", data)
+    // console.log("within updateListingCreator, data.category_id: ", data)
     dispatch(updateListing(data))
   } else {
-    console.log("!!! updateListingCreator fetch failed !!!", data)
+    // console.log("!!! updateListingCreator fetch failed !!!", data)
   }
   return data;
 };
@@ -170,9 +170,9 @@ const listingsReducer = ( state = {} , action) => {
       return newState;
     case DELETE_LISTING:
       newState = Object.assign({}, state);
-      console.log("!!! in reducer BEFORE delete, newState: ", newState)
+      // console.log("!!! in reducer BEFORE delete, newState: ", newState)
       delete newState.user_listings[action.listing_id];
-      console.log("!!! in reducer after delete, newState: ", newState)
+      // console.log("!!! in reducer after delete, newState: ", newState)
       return newState;
     default:
       return state;
