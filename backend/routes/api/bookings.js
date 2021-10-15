@@ -27,7 +27,7 @@ router.get(
 
 //ViewBooking
 router.get(
-  "/:user_id/booking_id",
+  "/:user_id/:booking_id",
   asyncHandler(async (req, res, next) => {
     const booking_id = req.params.booking_id;
     const booking = await BookingsRepository.getBooking(booking_id);
@@ -63,7 +63,7 @@ router.post(
 
 //EditListing
 router.put(
-  "/:user_id/booking_id",
+  "/:user_id/:booking_id",
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const form_data = req.body;

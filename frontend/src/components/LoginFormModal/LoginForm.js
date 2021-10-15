@@ -9,6 +9,14 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const demoLogin = async () => {
+    setCredential("Demo-lition")
+    setPassword("password")
+    return dispatch(
+      sessionActions.login({credential: "Demo-lition", password: "password"})
+    )
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
