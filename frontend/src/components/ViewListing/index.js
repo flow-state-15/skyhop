@@ -25,8 +25,8 @@ const ViewListing = () => {
 
     const handleBookingSubmit = ( event ) => {
         event.preventDefault();
-        book_start = new Date(book_start)
-        book_end = new Date(book_end)
+        book_start = new Date(book_start + 1)
+        book_end = new Date(book_end + 1 )
         // console.log("logging form dates", book_start, book_end, testDate)
 
         const form_data = {
