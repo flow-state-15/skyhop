@@ -117,6 +117,7 @@ const Profile = () => {
             ))}
           </ul>
         </div>
+        <h1>TRYING TO SOLVE GIT MERGE PROBLEM</h1>
       </div>
     );
 };
