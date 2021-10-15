@@ -40,7 +40,7 @@ const Profile = () => {
     dispatch(getUserListingsCreator(user_id));
     dispatch(getAllBookingsCreator(user_id));
     dispatch(getOneBookingCreator(user_id, booking_id));
-    console.log("IN USE EFFECT, booking_id:", booking_id)
+    // console.log("IN USE EFFECT, booking_id:", booking_id)
     return setCount(1);
   }, [count, update_clicked, booking_id]);
 

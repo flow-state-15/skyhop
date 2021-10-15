@@ -63,7 +63,7 @@ const deleteListing = (listing_id) => {
 //action creators
 export const getCategoryListingsCreator = (category_id) => async (dispatch) => {
   try {
-    console.log("in getCategoryListingsCreator")
+    // console.log("in getCategoryListingsCreator")
   const response = await fetch(`/api/listings/categories/${category_id}`);
   const category_listings = await response.json();
   // console.log("in getCategoryListingsCreator. fetch return after .json(): ", category_listings)

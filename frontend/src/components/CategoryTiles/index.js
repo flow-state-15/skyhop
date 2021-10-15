@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import './CategoryTiles.css'
 
 
 const CategoryTiles = ({ categories }) => {
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log("IN CategoryTiles COMPONENT. categories = ", categories, typeof categories)
+    //     console.log("IN CategoryTiles COMPONENT. categories = ", categories, typeof categories)
 
-    }, [])
+    // }, [])
 
     return (
         <div>
@@ -19,7 +19,7 @@ const CategoryTiles = ({ categories }) => {
             <h3 id='get_in_the_air'>Get in the air</h3>
             <div id='category_tiles_container'>
                 {categories.map((category, index) => (
-                    <div>
+                    <div key={index}>
                         <Link
                         to={`/listings/categories/${category.id}`} className='category_tile'
                         >
