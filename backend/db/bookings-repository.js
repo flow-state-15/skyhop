@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Booking } = require("./models");
+const { Booking, Listing } = require("./models");
 
 async function getAllBookings(renter_id) {
   // console.log("!!! in getAllBookings !!!")
@@ -7,6 +7,7 @@ async function getAllBookings(renter_id) {
     where: {
       renter_id: renter_id,
     },
+    include: Listing,
   });
 
   // console.log("*** in getAllBookings repo, bookings: ", bookings)
@@ -15,7 +16,10 @@ async function getAllBookings(renter_id) {
 }
 
 async function getBooking(booking_id) {
-  return await Booking.findByPk(booking_id);
+  console.log("IN GET BOOKING REPO")
+  return await Booking.findByPk(booking_id, {
+    include: Listing,
+  });
 }
 
 async function createBooking(form_data) {

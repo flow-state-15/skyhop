@@ -9,6 +9,7 @@ import {
   getAllBookingsCreator,
   deleteBookingCreator,
   updateBookingCreator,
+  getOneBookingCreator,
 } from "../../store/bookings";
 import { Link, useParams } from "react-router-dom";
 
@@ -18,11 +19,13 @@ const Profile = () => {
   const user_id = useSelector((state) => state.session?.user?.id);
   let user_listings = useSelector((state) => state.listings?.user_listings);
   let all_bookings = useSelector((state) => state.bookings?.all_bookings);
+  let single_booking = useSelector((state) => state.bookings?.single_booking);
   let [count, setCount] = useState(0);
   let [book_start, setBook_start] = useState("");
   let [book_end, setBook_end] = useState("");
   let [dispatched, setDispatched] = useState(false);
-  let [update_clicked, setUpdate_click] = useState(0);
+  let [update_clicked, setUpdate_click] = useState(false);
+  let [booking_id, setBooking_id] = useState('');
 
   if (user_listings) {
     user_listings = Object.values(user_listings);
@@ -36,8 +39,10 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getUserListingsCreator(user_id));
     dispatch(getAllBookingsCreator(user_id));
+    dispatch(getOneBookingCreator(user_id, booking_id));
+    console.log("IN USE EFFECT, booking_id:", booking_id)
     return setCount(1);
-  }, [count]);
+  }, [count, update_clicked, booking_id]);
 
   // console.log("**checking state**", user_id);
   // console.log("**checking user_listings**", user_listings);
@@ -58,21 +63,24 @@ const Profile = () => {
 
   const handleUpdateBooking = (e) => {
     e.preventDefault();
-    // book_start = new Date(book_start);
-    // book_end = new Date(book_end);
-    // // console.log("logging form dates", book_start, book_end, testDate)
+    dispatch(getOneBookingCreator(user_id, e.target.value));
 
-    // const form_data = {
-    //   booking_id: listing.id,
-    //   listing_id: ,
-    //   renter_id: user_id,
-    //   book_start,
-    //   book_end,
-    // };
-    // dispatch(updateBookingCreator(form_data));
-    // dispatch(getAllBookingsCreator(user_id));
-    // setDispatched(true);
-    // setCount((prev) => prev + 1);
+    book_start = new Date(book_start);
+    book_end = new Date(book_end);
+
+    const form_data = {
+      booking_id: single_booking?.id,
+      listing_id: single_booking?.Listing?.id,
+      renter_id: user_id,
+      book_start,
+      book_end,
+    };
+    console.log("!!!! logging form_data", form_data);
+    dispatch(updateBookingCreator(form_data));
+    dispatch(getAllBookingsCreator(user_id));
+    setDispatched(true);
+    setCount((prev) => prev + 1);
+    setUpdate_click(false);
   };
 
   if (+params.user_id !== user_id) {
@@ -122,31 +130,43 @@ const Profile = () => {
             {all_bookings?.map((booking, index) => (
               <li key={index + booking.id}>
                 <div className="listing_container">
-                  {/* <h3>You are booking: {booking}</h3> */}
-                  <h5>Booking ID: {booking.id}</h5>
+                  <h3>You are booking: </h3>
+                  <p>{booking.Listing.title}</p>
+                  <p>Booking ID: {booking.id}</p>
                   <Link to={`/listings/${booking.listing_id}`}>
-                    No Image Yet
-                    <img src={``} alt={`improper source atm`} />
+                    <img src={booking.Listing.img_url} alt="" />
                   </Link>
 
-                  {/* <div className="book_start">{new Date(booking.book_start).toLocaleDateString("en-US", {
-                      weekday: "short",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
+                  <div className="book_start">
+                    <span>Your booking starts on:</span>
+                    <span>
+                      {new Date(booking.book_start).toLocaleDateString(
+                        "en-US",
+                        {
+                          weekday: "short",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
+                    </span>
                   </div>
-                  <div className="book_end">{new Date(booking.book_end).toLocaleDateString("en-US", {
-                      weekday: "short",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
-                  </div> */}
+                  <div className="book_end">
+                    <span>Your booking ends on:</span>
+                    <span>
+                      {new Date(booking.book_end).toLocaleDateString("en-US", {
+                        weekday: "short",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                  <div>
+                    {dispatched ? (
+                      <span>You have successfully updated this booking</span>
+                    ) : null}
+                  </div>
 
                   <button
                     id="delete_booking_button"
@@ -155,10 +175,19 @@ const Profile = () => {
                   >
                     Delete this booking
                   </button>
-                  <button id="update_booking_button">
+                  <button
+                    id="update_booking_button"
+                    value={booking.id}
+                    onClick={(e) => {
+                      dispatch(getOneBookingCreator(user_id, booking.id));
+                      setBooking_id(booking.id)
+                      if (update_clicked) return setUpdate_click(false);
+                      setUpdate_click(true);
+                    }}
+                  >
                     Update this booking
                   </button>
-                  {update_clicked ? (
+                  {(update_clicked && single_booking?.id == booking?.id) ? (
                     <div>
                       <form
                         className="calendar_container"
@@ -181,21 +210,14 @@ const Profile = () => {
                           onChange={(e) => setBook_end(e.target.value)}
                         />
                         <button
-                          id="book_listing_button"
+                          id="booking_update_button"
                           type="submit"
                           value={booking.id}
                           // disabled={()}
                         >
-                          Book this listing
+                          Update
                         </button>
                       </form>
-                      <div>
-                        {dispatched ? (
-                          <span>
-                            You have successfully updated this listing
-                          </span>
-                        ) : null}
-                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -203,7 +225,6 @@ const Profile = () => {
             ))}
           </ul>
         </div>
-        <h1>TRYING TO SOLVE GIT MERGE PROBLEM</h1>
       </div>
     );
 };

@@ -46,6 +46,7 @@ const createBooking = (booking) => {
 };
 
 const updateBooking = (booking) => {
+  console.log("IN UPDATE booking ACTION: ", booking)
   return {
     type: UPDATE_BOOKING,
     booking,
@@ -73,7 +74,7 @@ export const getAllBookingsCreator = (user_id) => async (dispatch) => {
 
 export const getOneBookingCreator =
   (user_id, booking_id) => async (dispatch) => {
-    const response = await fetch(`/api/bookings/${user_id}/${booking_id}`);
+    const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`);
     const { booking } = await response.json();
     dispatch(getOneBooking(booking));
     return response;
@@ -114,7 +115,7 @@ export const updateBookingCreator = (form_data) => async (dispatch) => {
   });
   const { data } = await response.json();
   if (response.ok) {
-    // console.log("within updateBookingCreator, data: ", data)
+    console.log("within updateBookingCreator, data: ", data)
     dispatch(updateBooking(data));
   } else {
     // console.log("!!! updateListingCreator fetch failed !!!", data)
