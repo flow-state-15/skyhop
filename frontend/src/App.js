@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
+import LoginSplashPage from "./components/LoginSplashPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import CategoryTiles from "./components/CategoryTiles";
@@ -29,8 +29,8 @@ function App() {
     <div className='page_wrapper'>
       <Navigation isLoaded={isLoaded} />
         {isLoaded && (
-          <Route path="/signup">
-            <SignupFormPage />
+          <Route path="/login">
+            <LoginSplashPage />
           </Route>
         )}
       <Switch>
@@ -64,9 +64,9 @@ function App() {
         <Route path='/bookings/:booking_id/update' >
           <UpdateBooking />
         </Route>
-        <Route path='/login' >
+        {/* <Route path='/login' >
           <LoginFormModal />
-        </Route>
+        </Route> */}
       </Switch>
       <Footer />
     </div>
