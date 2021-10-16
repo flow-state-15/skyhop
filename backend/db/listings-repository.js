@@ -19,7 +19,7 @@ async function getUserListings(user_id) {
 
 async function createListing(form_data) {
   const listing = await Listing.create({...form_data});
-  console.log("******************in create listing listing: ", listing)
+  // console.log("******************in create listing listing: ", listing)
   return listing;
 }
 
@@ -35,12 +35,12 @@ async function updateListing(form_data) {
 }
 
 async function getListing(listing_id) {
-  console.log("***************", listing_id ,"*******************")
+  // console.log("***************", listing_id ,"*******************")
   return await Listing.findByPk(listing_id);
 }
 
 async function deleteListing(listing_id) {
-  console.log("***************", listing_id ,"*******************")
+  // console.log("***************", listing_id ,"*******************")
   const response = await Listing.destroy({
     where: { id: listing_id }
   });

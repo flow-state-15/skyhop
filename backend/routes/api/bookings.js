@@ -55,13 +55,11 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res, next) => {
     try {
+      // console.log(
+        // "************** !!! in bookings POST route !!! *******")
       const form_data = req.body;
       const response = await BookingsRepository.createBooking(form_data);
       // const data = await response.json()
-      // console.log(
-      //   "** !!! in listings POST route, return from listing repo: ",
-      //   response
-      // );
       return res.json({
         data: response.dataValues,
       });

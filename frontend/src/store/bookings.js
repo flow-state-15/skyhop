@@ -46,7 +46,7 @@ const createBooking = (booking) => {
 };
 
 const updateBooking = (booking) => {
-  console.log("IN UPDATE booking ACTION: ", booking)
+  // console.log("IN UPDATE booking ACTION: ", booking)
   return {
     type: UPDATE_BOOKING,
     booking,
@@ -54,7 +54,7 @@ const updateBooking = (booking) => {
 };
 
 const deleteBooking = (booking_id) => {
-  console.log("IN DELETE BOOKING ACTION, booking_id: ", booking_id);
+  // console.log("IN DELETE BOOKING ACTION, booking_id: ", booking_id);
   return {
     type: DELETE_BOOKING,
     booking_id,
@@ -103,7 +103,7 @@ export const createBookingCreator = (form_data) => async (dispatch) => {
     if (response.ok) {
       dispatch(createBooking(data));
     } else {
-      console.log("!!! createBookingCreator fetch failed !!!", data);
+      // console.log("!!! createBookingCreator fetch failed !!!", data);
     }
     return data;
 
@@ -126,7 +126,7 @@ export const updateBookingCreator = (form_data) => async (dispatch) => {
     });
     const { data } = await response.json();
     if (response.ok) {
-      console.log("within updateBookingCreator, data: ", data)
+      // console.log("within updateBookingCreator, data: ", data)
       dispatch(updateBooking(data));
     } else {
       // console.log("!!! updateListingCreator fetch failed !!!", data)
@@ -140,7 +140,7 @@ export const deleteBookingCreator =
   (user_id, booking_id) => async (dispatch) => {
     try {
       // user_id = user_id.toString()
-      console.log("IN DELETE BOOKING CREATOR, user_id, booking_id", user_id, typeof user_id, booking_id, typeof booking_id)
+      // console.log("IN DELETE BOOKING CREATOR, user_id, booking_id", user_id, typeof user_id, booking_id, typeof booking_id)
       const response = await csrfFetch(`/api/bookings/${user_id}/${booking_id}`, {
         method: "DELETE",
         headers: {
@@ -176,7 +176,9 @@ const bookingsReducer = (state = {}, action) => {
       return newState;
     case CREATE_BOOKING:
       newState = Object.assign({}, state);
+      // console.log("in CREATE_BOOKING switch, state copy: ", newState)
       newState.all_bookings = { ...newState.all_bookings, ...action.payload };
+      // console.log("in CREATE_BOOKING switch, state after all_bookings reassigned: ", newState)
       return newState;
     case DELETE_BOOKING:
       newState = Object.assign({}, state);

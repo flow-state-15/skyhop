@@ -17,7 +17,7 @@ router.get(
     try {
       const category_id = req.params.category_id;
 
-      console.log("in GET CATEGORIES endpoint, param: ", category_id, typeof category_id);
+      // console.log("in GET CATEGORIES endpoint, param: ", category_id, typeof category_id);
 
       const listings = await ListingsRepository.getCategoryListings(category_id);
       return res.json({
@@ -36,7 +36,7 @@ router.get(
     try {
       const user_id = req.params.user_id;
 
-      console.log("in GET USER LISTINGS endpoint, user_id: ", user_id, typeof user_id);
+      // console.log("in GET USER LISTINGS endpoint, user_id: ", user_id, typeof user_id);
 
       const listings = await ListingsRepository.getUserListings(user_id);
       return res.json({
@@ -77,10 +77,10 @@ router.post(
       const form_data = req.body;
       const response = await ListingsRepository.createListing(form_data);
       // const data = await response.json()
-      console.log(
-        "** !!! in listings POST route, return from listing repo: ",
-        response
-      );
+      // console.log(
+      //   "** !!! in listings POST route, return from listing repo: ",
+      //   response
+      // );
       return res.json({
         data: response.dataValues,
       });
@@ -96,10 +96,10 @@ router.put(
   asyncHandler(async (req, res, next) => {
     try {
       const form_data = req.body;
-      console.log(
-        "** !!! in listings PUT route, form_data in req: ",
-        form_data
-      );
+      // console.log(
+      //   "** !!! in listings PUT route, form_data in req: ",
+      //   form_data
+      // );
       const response = await ListingsRepository.updateListing(form_data);
       // const data = await response.json()
       return res.json({
@@ -115,14 +115,14 @@ router.delete(
   "/:user_id/:listing_id",
   asyncHandler(async (req, res, next) => {
     try {
-      console.log("!!! IN DELETE ROUTE !!!")
+      // console.log("!!! IN DELETE ROUTE !!!")
       const listing_id = req.params.listing_id;
       const response = await ListingsRepository.deleteListing(listing_id);
       // const data = await response.json()
-      console.log(
-        "** !!! in listings DELETE route, return from listing repo: ",
-        response
-      );
+      // console.log(
+      //   "** !!! in listings DELETE route, return from listing repo: ",
+      //   response
+      // );
       if(response) {
         return res.json({
           status: response

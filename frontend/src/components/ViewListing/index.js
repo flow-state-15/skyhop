@@ -1,10 +1,10 @@
 
 import './ViewListing.css'
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOneListingCreator } from '../../store/listings';
-import { createBookingCreator } from '../../store/bookings';
+import { createBookingCreator, getAllBookingsCreator } from '../../store/bookings';
 
 const ViewListing = () => {
     const { listing_id } = useParams();
@@ -21,22 +21,34 @@ const ViewListing = () => {
 
     useEffect(() => {
         dispatch(getOneListingCreator(listing_id))
-    }, [])
+    }, [listing_id, dispatch])
+
+    // useEffect(() => {
+    //     console.log(
+    //         "CHECK CALENDAR DATA: book_start:", book_start,
+    //         "CHECK CALENDAR DATA: book_end:", book_end,
+    //     )
+    // }, [book_start, book_end])
+
+    let date_start;
+    let date_end;
 
     const handleBookingSubmit = ( event ) => {
         event.preventDefault();
-        book_start = new Date(book_start + 1)
-        book_end = new Date(book_end + 1 )
-        // console.log("logging form dates", book_start, book_end, testDate)
+        date_start = new Date(book_start.toString())
+        date_end = new Date(book_end.toString())
+        // console.log("logging form dates, start", date_start)
+        // console.log("logging form dates, end", date_end)
 
         const form_data = {
             listing_id: listing.id,
             renter_id: user_id,
-            book_start,
-            book_end,
+            book_start: date_start,
+            book_end: date_end,
         }
         setDispatched(true)
         dispatch(createBookingCreator(form_data))
+        dispatch(getAllBookingsCreator(user_id))
     }
 
     // console.log(category_listings.listings)

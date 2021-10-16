@@ -23,6 +23,7 @@ async function getBooking(booking_id) {
 }
 
 async function createBooking(form_data) {
+  // console.log("******************in booking repo ****************", form_data);
   const newBooking = await Booking.create({ ...form_data });
   // console.log("******************in booking repo, newBooking: ", newBooking);
   return newBooking;

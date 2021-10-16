@@ -12,11 +12,11 @@ const Listings = () => {
 
 
     const category_listings = useSelector(state => state.listings.category_listings)
-    const test = useSelector( state => state )
+    // const test = useSelector( state => state )
 
     useEffect(() => {
         dispatch(getCategoryListingsCreator(category_id))
-    }, [])
+    }, [dispatch, category_id])
 
     // console.log("**checking state**", test)
 

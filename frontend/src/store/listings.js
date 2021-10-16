@@ -39,12 +39,12 @@ const getOneListing = (listing) => {
   };
 };
 
-const createListing = (listing) => {
-  return {
-    type: CREATE_LISTING,
-    listing
-  };
-};
+// const createListing = (listing) => {
+//   return {
+//     type: CREATE_LISTING,
+//     listing
+//   };
+// };
 
 const updateListing = (listing) => {
   return {
@@ -155,7 +155,7 @@ export const deleteListingCreator = (user_id, listing_id) => async dispatch => {
     const response = await csrfFetch(`/api/listings/${user_id}/${listing_id}`, {
       method: "DELETE",
     });
-    const status = await response.json();
+    // const status = await response.json();
 
     dispatch(deleteListing(listing_id));
     return response;
