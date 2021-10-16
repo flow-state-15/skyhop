@@ -241,7 +241,13 @@ const Profile = () => {
   } else {
     dispatch(restoreUser())
     return (
-      <h3>Loading . . .</h3>
+      <div>
+        <h3>Loading . . .</h3>
+        <span>
+          If this takes a while, please navigate <Link to='/' style={{color: "red"}}>Home</Link>
+        </span>
+      </div>
+
     )
   }
 };

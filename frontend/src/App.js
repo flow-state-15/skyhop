@@ -16,6 +16,7 @@ import ViewBooking from "./components/ViewBooking";
 import UpdateListing from "./components/UpdateListing";
 import UpdateBooking from "./components/UpdateBooking";
 import Profile from "./components/Profile";
+import LoginFormModal from "./components/LoginFormModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path='/bookings/:booking_id/update' >
           <UpdateBooking />
+        </Route>
+        <Route path='/login' >
+          <LoginFormModal />
         </Route>
       </Switch>
       <Footer />

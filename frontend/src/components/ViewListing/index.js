@@ -1,6 +1,6 @@
 
 import './ViewListing.css'
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOneListingCreator } from '../../store/listings';
@@ -8,6 +8,7 @@ import { createBookingCreator, getAllBookingsCreator } from '../../store/booking
 
 const ViewListing = () => {
     const { listing_id } = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     let [book_start, setBook_start] = useState('')
     let [book_end, setBook_end] = useState('')
@@ -16,6 +17,7 @@ const ViewListing = () => {
 
     const listing = useSelector(state => state?.listings?.listing?.listing)
     const user_id = useSelector(state => state?.session?.user?.id)
+    const session_user = useSelector(state => state?.session?.user)
 
     // console.log("!!! in ViewListing Component, listing from State: ", listing)
 
@@ -35,6 +37,7 @@ const ViewListing = () => {
 
     const handleBookingSubmit = ( event ) => {
         event.preventDefault();
+        if(!session_user) history.push('/login')
         date_start = new Date(book_start.toString())
         date_end = new Date(book_end.toString())
         // console.log("logging form dates, start", date_start)

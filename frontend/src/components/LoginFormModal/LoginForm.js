@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   const demoLogin = async () => {
-    setCredential("Demo-lition")
-    setPassword("password")
-    return dispatch(
-      sessionActions.login({credential: "Demo-lition", password: "password"})
+    // setCredential("Demo-lition")
+    // setPassword("password")
+    dispatch(
+      sessionActions.login({credential: "Demo1@demo.demo", password: "Demo1@demo.demo"})
     )
+    return history.push('/')
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    console.log("login submit even: ", credential, password, errors);
+    // console.log("login submit even: ", credential, password, errors);
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -68,7 +70,15 @@ function LoginForm() {
         <div id='line'></div>
       </div>
       <div id='demo_container'>
-        <p id='demo_text'>Just want to tour the site?{(<button className='modal_inputs_buttons'>Demo User</button>)}</p>
+        <p id='demo_text'>
+          Just want to tour the site?
+          {(
+            <button
+              className='modal_inputs_buttons'
+              onClick={ demoLogin }
+            >Demo User</button>
+          )}
+        </p>
       </div>
     </div>
   );
