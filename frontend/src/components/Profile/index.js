@@ -104,7 +104,7 @@ const Profile = () => {
     );
   } else
     return (
-      <div>
+      <div id='profile_page_wrapper'>
         <div id="user_listings_component_wrapper">
           <h2>Your Listings</h2>
 

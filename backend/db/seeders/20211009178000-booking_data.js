@@ -14,7 +14,7 @@ function getRandomNum(min, max) {
 
 function makeBookings(target) {
   const bookings = [];
-  for (let i = 2; i <= target; i++) {
+  for (let i = 1; i <= target; i++) {
     const randomNum = getRandomNum(10, 180);
     const newBooking = {
       listing_id: i,
@@ -28,13 +28,13 @@ function makeBookings(target) {
 }
 
 const seedBookings = [
-  {
-    listing_id: 1,
-    renter_id: 1,
-    book_start: new Date(),
-    book_end: setFutureDate(2),
-  },
-  ...makeBookings(20),
+  // {
+  //   listing_id: 1,
+  //   renter_id: 1,
+  //   book_start: new Date(),
+  //   book_end: setFutureDate(2),
+  // },
+  ...makeBookings(23),
 ];
 
 module.exports = {
@@ -46,3 +46,5 @@ module.exports = {
     return queryInterface.bulkDelete("Bookings", null, {});
   },
 };
+
+// npx dotenv sequelize db:drop && npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all

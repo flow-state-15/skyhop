@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
     <nav id="nav_container">
       <ul id="nav_list">
         <NavLink exact to="/" id="shipshape_nav_logo">
-          theHanger
+          SKYHOP
         </NavLink>
         <div id="nav_right_button_group">
           <Link

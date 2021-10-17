@@ -12,28 +12,28 @@ module.exports = {
       "Categories",
       [
         {
-          name: "Single Engine Prop",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972109/shipshape-project/sailboat_category_img_w61x2x.jpg'
+          name: "Special Use Aircraft",
+          url: 'https://i.insider.com/5f3d84f042f43f001ddfde5c?width=1000&format=jpeg&auto=webp'
         },
         {
-          name: "Twin Engine Prop",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972489/shipshape-project/bluewater_category_img_uistbj.jpg'
+          name: "Warbirds",
+          url: 'https://arc-anglerfish-arc2-prod-bonnier.s3.amazonaws.com/public/V5INQLSHAJUO6K3LNNXWZ7TQ5E.jpg'
         },
         {
-          name: "Light Jet",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972642/shipshape-project/fishing_category_img_oypts3.jpg'
+          name: "Helicopters",
+          url: 'https://avioninsurance.com/wp-content/uploads/2020/09/helicopter-safety.jpeg'
         },
         {
-          name: "Commercial",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972772/shipshape-project/sport_category_img_a4ea88.jpg'
+          name: "Jets",
+          url: 'https://exclusive.multibriefs.com/images/exclusive/0113jetlinx.jpg'
         },
         {
-          name: "Rotorcraft",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633974118/shipshape-project/pleasure_category_img_jx57ie.jpg'
+          name: "Single Prop",
+          url: 'https://www.southernwings.co.nz/wp-content/uploads/2020/07/private-light-airplane.jpeg'
         },
         {
-          name: "Other",
-          url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633974534/shipshape-project/utility_category_img_u6qd6i.jpg'
+          name: "Double Prop",
+          url: 'https://www.flyingmag.com/resizer/wyRbvOwfZyAalGYyyURpw8Y24do=/arc-anglerfish-arc2-prod-bonnier.s3.amazonaws.com/public/LFMMMNHI7BGHFLLV4PE3DGNPEU.jpg'
         },
     ],
       {}

@@ -1,35 +1,34 @@
-
 const categories = [
   {
     id: 1,
-    name: "Sailboats",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972109/shipshape-project/sailboat_category_img_w61x2x.jpg'
+    name: "Special Use Aircraft",
+    url: "https://i.insider.com/5f3d84f042f43f001ddfde5c?width=1000&format=jpeg&auto=webp",
   },
   {
     id: 2,
-    name: "Bluewater",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972489/shipshape-project/bluewater_category_img_uistbj.jpg'
+    name: "Warbirds",
+    url: "https://arc-anglerfish-arc2-prod-bonnier.s3.amazonaws.com/public/V5INQLSHAJUO6K3LNNXWZ7TQ5E.jpg",
   },
   {
     id: 3,
-    name: "Fishing",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972642/shipshape-project/fishing_category_img_oypts3.jpg'
+    name: "Helicopters",
+    url: "https://avioninsurance.com/wp-content/uploads/2020/09/helicopter-safety.jpeg",
   },
   {
     id: 4,
-    name: "Sport",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633972772/shipshape-project/sport_category_img_a4ea88.jpg'
+    name: "Jets",
+    url: "https://exclusive.multibriefs.com/images/exclusive/0113jetlinx.jpg",
   },
   {
     id: 5,
-    name: "Pleasure",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633974118/shipshape-project/pleasure_category_img_jx57ie.jpg'
+    name: "Single Prop",
+    url: "https://www.southernwings.co.nz/wp-content/uploads/2020/07/private-light-airplane.jpeg",
   },
   {
     id: 6,
-    name: "Utility",
-    url: 'https://res.cloudinary.com/dan-purcell-2021/image/upload/v1633974534/shipshape-project/utility_category_img_u6qd6i.jpg'
+    name: "Double Prop",
+    url: "https://www.flyingmag.com/resizer/wyRbvOwfZyAalGYyyURpw8Y24do=/arc-anglerfish-arc2-prod-bonnier.s3.amazonaws.com/public/LFMMMNHI7BGHFLLV4PE3DGNPEU.jpg",
   },
-]
+];
 
 export default categories;

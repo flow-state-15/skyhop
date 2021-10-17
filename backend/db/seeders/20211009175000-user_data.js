@@ -27,7 +27,7 @@ const seedData = [
     email: "Test1@test.test",
     hashed_password: bcrypt.hashSync("Test1@test.test", 1),
   },
-  ...makeUsers(48),
+  ...makeUsers(100),
 ];
 
 module.exports = {

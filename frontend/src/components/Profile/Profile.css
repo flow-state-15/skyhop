@@ -1,0 +1,33 @@
+#profile_page_wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#user_listings_component_wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+#user_bookings_component_wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+.listing_container {
+    height: fit-content;
+    width: 620px;
+    border: 2px solid #a1a1a1;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: white;
+
+
+}
