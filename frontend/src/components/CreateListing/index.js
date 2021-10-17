@@ -49,10 +49,10 @@ const CreateListing = () => {
     return <Redirect to="/login" />;
   } else {
     return (
-      <div id="create_listing_component_wrapper">
+      <div id="create_listing_page_wrapper">
         <span id="create_listing_banner">
           Do you want to monetize your aircraft when you don't need them?
-          Through The Hanger you can rent your aircraft to rigorously qualified
+          Through Skyhop you can rent your aircraft to rigorously qualified
           instructors and pilots to take advantage of parking downtime.
         </span>
         <div id="form_container">
@@ -71,6 +71,7 @@ const CreateListing = () => {
               value={title}
               placeholder="What are you listing?"
               name="title"
+              className='form_input'
             />
             <textarea
               type="text"
@@ -78,6 +79,7 @@ const CreateListing = () => {
               value={description}
               placeholder="Describe your listing"
               name="description"
+              className='form_input'
             />
             <label for="category">Choose aircraft category:</label>
             <select
@@ -85,6 +87,7 @@ const CreateListing = () => {
               onChange={(e) => setCategory_id(e.target.value)}
               value={category_id}
               name="category"
+              className='form_input'
             >
               <option value="">--Please choose an option--</option>
               <option value={1}>Single Engine Prop</option>
@@ -101,6 +104,7 @@ const CreateListing = () => {
               value={location}
               placeholder="Airport name"
               name="location"
+              className='form_input'
             />
             <input
               type="text"
@@ -108,6 +112,7 @@ const CreateListing = () => {
               value={img_url}
               placeholder="Paste your image url here"
               name="img_url"
+              className='form_input'
             />
             <button type="submit" disabled={validationErrors.length > 0}>
               Submit

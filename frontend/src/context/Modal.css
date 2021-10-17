@@ -27,23 +27,22 @@
   position: absolute;
   background-color: white;
   border-radius: 20px;
+  height: fit-content;
 }
 
-#auth_modal_container {
+.auth_modal_container {
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 500px;
-  padding: 3px;
+  height: fit-content;
   align-items: center;
-  width: 100%;
 }
 
 #modal_top_banner {
   padding: 6px;
 }
 
-#auth_modal_form_container {
+.auth_modal_form_container {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -16,7 +16,6 @@ import ViewBooking from "./components/ViewBooking";
 import UpdateListing from "./components/UpdateListing";
 import UpdateBooking from "./components/UpdateBooking";
 import Profile from "./components/Profile";
-import LoginFormModal from "./components/LoginFormModal";
 
 function App() {
   const dispatch = useDispatch();

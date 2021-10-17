@@ -19,13 +19,16 @@ const CategoryTiles = ({ categories }) => {
             <h3 id='get_in_the_air'>Get in the air</h3>
             <div id='category_tiles_container'>
                 {categories.map((category, index) => (
-                    <div key={index}>
+                    <div key={index} className='category_tile'>
                         <Link
-                        to={`/listings/categories/${category.id}`} className='category_tile'
+                        to={`/listings/categories/${category.id}`}
                         >
-                            <img src={category.url} alt={category.name} />
+                            <img
+                                src={category.url}
+                                alt={category.name}
+                                className='category_img'
+                            />
                         </Link>
-                        <span className='category_tile'>{category.name}</span>
                     </div>
                 ))}
             </div>

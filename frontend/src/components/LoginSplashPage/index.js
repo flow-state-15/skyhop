@@ -5,6 +5,7 @@ import * as sessionActions from "../../store/session";
 import LoginForm from '../LoginFormModal/LoginForm'
 import SignupForm from "../LoginFormModal/SignupForm";
 
+
 function LoginSplashPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -29,21 +30,23 @@ function LoginSplashPage() {
         <div>
           <h2>Welcome to Skyhop!</h2>
           <span>Please Log in or Sign up to access all the features</span>
-          <div id="auth_modal_container">
+          <div className="auth_modal_container">
             <div id="modal_top_banner">
               <span>
                 <Link
                   to=""
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     setLogin_clicked(true);
                   }}
                 >
                   Log in
-                </Link>{" "}
-                or
+                </Link>
+                {" "}or{" "}
                 <Link
                   to=""
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     setLogin_clicked(false);
                   }}
                 >

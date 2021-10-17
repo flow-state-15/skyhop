@@ -28,7 +28,8 @@ function LoginFormModal() {
           <span>
             <Link
               to=""
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 setLogin_clicked(true);
               }}
             >
@@ -37,7 +38,8 @@ function LoginFormModal() {
             or
             <Link
               to=""
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 setLogin_clicked(false);
               }}
             >
