@@ -1,8 +1,9 @@
-.profile-dropdown {
+#profile-dropdown-parent
+
+#profile-dropdown {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    border-radius: 45px;
     text-decoration: none;
     color: white !important;
 }

@@ -24,7 +24,7 @@ const Listings = () => {
 
     return (
         <div id='listings_component_wrapper'>
-            <h2>testing Listings component</h2>
+            <h2>Listings </h2>
 
             <ul>
                 {category_listings?.listings?.map((listing, index) => (

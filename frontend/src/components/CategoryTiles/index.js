@@ -13,9 +13,9 @@ const CategoryTiles = ({ categories }) => {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <img src='https://res.cloudinary.com/dan-purcell-2021/image/upload/v1634095238/shipshape-project/ribbon_test_asset_d8oald.png'  alt='' />
-            </div>
+            </div> */}
             <h3 id='get_in_the_air'>Get in the air</h3>
             <div id='category_tiles_container'>
                 {categories.map((category, index) => (
