@@ -25,10 +25,11 @@ function SignupForm() {
       "Confirm Password field must be the same as the Password field",
     ]);
   };
-
+  // className='auth_modal_container'
+  // className="auth_modal_form_container"
   return (
-    <div className='auth_modal_container'>
-      <div className="auth_modal_form_container">
+    <div >
+      <div >
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (

@@ -31,34 +31,42 @@
 }
 
 .auth_modal_container {
-  display: flex;
-  flex-direction: column;
   width: 500px;
   height: fit-content;
   align-items: center;
+  padding: 10px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 #modal_top_banner {
-  padding: 6px;
+  padding: 20px;
 }
 
-.auth_modal_form_container {
+/* .auth_modal_form_container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 95%;
+  width: 100%;
   height: fit-content;
-}
+} */
+
+/* .auth_modal_form_container > form {
+  left: 20px;
+} */
 
 #demo_container {
   text-align: center;
-  width: 95%;
+  width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal_inputs_buttons {
   width: 100%;
-  margin: 0px;
+  margin: 10px;
   border-radius: 8px;
   height: 35px;
 }
@@ -66,6 +74,7 @@
 #modal_divider {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 95%;
 }
 

@@ -118,18 +118,20 @@ const Profile = () => {
                   <Link to={`/listings/${listing?.id}`}>
                     <img src={listing?.img_url} alt={listing?.title} />
                   </Link>
-                  <button
-                    id="delete_listing_button"
-                    onClick={(e) => handleDeleteListing(e)}
-                    value={listing?.id}
-                  >
-                    Delete this listing
-                  </button>
-                  <Link to={`/listings/${listing?.id}/update`}>
-                    <button id="update_listing_button">
-                      Update this listing
+                  <div className='listing_button_container'>
+                    <button
+                      className="delete_listing_button"
+                      onClick={(e) => handleDeleteListing(e)}
+                      value={listing?.id}
+                    >
+                      Delete this listing
                     </button>
-                  </Link>
+                    <Link to={`/listings/${listing?.id}/update`}>
+                      <button className="update_listing_button">
+                        Update this listing
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </li>
             ))}
@@ -178,26 +180,27 @@ const Profile = () => {
                       <span>You have successfully updated this booking</span>
                     ) : null}
                   </div>
-
-                  <button
-                    id="delete_booking_button"
-                    onClick={handleDeleteBooking}
-                    value={booking?.id}
-                  >
-                    Delete this booking
-                  </button>
-                  <button
-                    id="update_booking_button"
-                    value={booking?.id}
-                    onClick={(e) => {
-                      dispatch(getOneBookingCreator(user_id, booking?.id));
-                      setBooking_id(booking?.id)
-                      if (update_clicked) return setUpdate_click(false);
-                      setUpdate_click(true);
-                    }}
-                  >
-                    Update this booking
-                  </button>
+                  <div>
+                    <button
+                      className="delete_listing_button"
+                      onClick={handleDeleteBooking}
+                      value={booking?.id}
+                    >
+                      Delete this booking
+                    </button>
+                    <button
+                      className="update_listing_button"
+                      value={booking?.id}
+                      onClick={(e) => {
+                        dispatch(getOneBookingCreator(user_id, booking?.id));
+                        setBooking_id(booking?.id)
+                        if (update_clicked) return setUpdate_click(false);
+                        setUpdate_click(true);
+                      }}
+                    >
+                      Update this booking
+                    </button>
+                  </div>
                   {(update_clicked && single_booking?.id === booking?.id) ? (
                     <div>
                       <form

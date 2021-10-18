@@ -3,18 +3,6 @@
     flex-direction: row;
 }
 
-#user_listings_component_wrapper {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-}
-
-#user_bookings_component_wrapper {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-}
-
 .listing_container {
     height: fit-content;
     width: 620px;
@@ -30,4 +18,20 @@
     background-color: white;
 
 
+}
+
+.listing_container > * {
+    padding: 5px;
+    text-align: left;
+}
+
+.delete_listing_button, .update_listing_button {
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#user_bookings_component_wrapper, #user_listings_component_wrapper {
+    margin: 6px;
+    display: flex;
+    flex-direction: column;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "../../context/Modal";
+// import { Modal } from "../../context/Modal";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import * as sessionActions from "../../store/session";
@@ -23,7 +23,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <div id="auth_modal_container">
+      <div className="auth_modal_container">
         <div id="modal_top_banner">
           <span>
             <Link
@@ -56,12 +56,12 @@ function LoginFormModal() {
         <div id="demo_container">
           <p id="demo_text">
             <span>Just want to tour the site?</span>
-            {
-              <button className="modal_inputs_buttons" onClick={demoLogin}>
-                Demo User
-              </button>
-            }
           </p>
+          {
+            <button className="modal_inputs_buttons" onClick={demoLogin}>
+              Demo User
+            </button>
+          }
         </div>
       </div>
     </>

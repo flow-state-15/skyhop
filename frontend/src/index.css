@@ -39,6 +39,8 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-image: url('https://res.cloudinary.com/dan-purcell-2021/image/upload/v1634537534/shipshape-project/sky_and_clouds_ms66pz.jpg');
+  background-size: cover; */
 }
 
 .main_content {
@@ -68,4 +70,13 @@ img {
 
 textarea {
     height: 60px !important;
+}
+
+#hosting_learn_more_button {
+  border-radius: 5px;
+  width: 60%;
+}
+
+form {
+  width: 100%;
 }
