@@ -11,7 +11,7 @@ const CategoryTiles = ({ categories }) => {
 
   return (
     <div>
-      <h3 id="get_in_the_air">Get in the air</h3>
+      <h2 id="get_in_the_air">Get in the air</h2>
       <div id="category_tiles_container">
         {categories.map((category, index) => (
           <div key={index} className="category_tile">

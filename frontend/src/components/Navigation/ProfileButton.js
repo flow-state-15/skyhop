@@ -34,7 +34,7 @@ function ProfileButton({ user }) {
   return (
 
     <div id='profileButton_container'>
-      <button onClick={openMenu}>
+      <button id='logged_in_button' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (

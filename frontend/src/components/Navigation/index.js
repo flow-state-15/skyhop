@@ -19,7 +19,7 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <button onClick={() => setShowModal(true)}>Log In</button>
+        <button id='profile_open_button' onClick={() => setShowModal(true)}>Log In</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <LoginFormModal />

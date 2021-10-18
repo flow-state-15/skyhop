@@ -30,7 +30,7 @@
     color: red !important;
 }
 
-#create_listing_page_wrapper {
+.create_listing_page_wrapper {
     width: 100% !important;
     margin: 0px !important;
     padding: 0px;

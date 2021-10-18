@@ -49,7 +49,7 @@ const CreateListing = () => {
     return <Redirect to="/login" />;
   } else {
     return (
-      <div id="create_listing_page_wrapper">
+      <div className="create_listing_page_wrapper">
         <span id="create_listing_banner">
           Do you want to monetize your aircraft when you don't need them?
           Through Skyhop you can rent your aircraft to rigorously qualified

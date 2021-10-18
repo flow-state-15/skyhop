@@ -67,8 +67,6 @@ const ViewListing = () => {
                 <h5>Airport: {listing?.location}</h5>
                 <img src={listing?.img_url} alt={listing?.title} />
             </div>
-
-            {/* i need to grab the value of this date */}
             <div >
                 <form
                     className='calendar_container'
