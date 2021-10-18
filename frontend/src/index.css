@@ -6,6 +6,11 @@
     url(./fonts/AirbnbCerealMedium.woff) format("woff");
 }
 
+html {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 body {
   text-align: center;
 }
@@ -14,6 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 1000px;
+  padding: 0px;
+  margin: 0px;
 }
 
 * {
@@ -21,7 +28,7 @@ body {
   font-family: "AirbnbCerealMedium";
   color: blue;
   text-decoration: none;
-  margin: 3px;
+  margin: 0px;
 }
 
 li {
@@ -62,4 +69,3 @@ img {
 textarea {
     height: 60px !important;
 }
-
